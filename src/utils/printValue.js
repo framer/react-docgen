@@ -21,13 +21,13 @@ function deindent(code: string): string {
 
 function getSrcFromAst(path: NodePath): string {
   do {
-    if (path.node.type === 'File') {
+    if (path.node && path.node.type === 'File') {
       return path.node.__src;
     }
     path = path.parentPath;
   } while (path != null);
 
-  throw new Error('Could not find source attached to File node');
+  return '';
 }
 
 /**
